@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    public static EventManager Intance { get; private set; }
+    public static EventManager Instance { get; private set; }
 
     public event Action<int, int> OnHealthChanged;
     public event Action<int, int, int> OnEXPChanged;
@@ -14,12 +14,12 @@ public class EventManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Intance != null && Intance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        Intance = this;
+        Instance = this;
         DontDestroyOnLoad(gameObject);
     }
     public void HealthChanged(int current, int max) => OnHealthChanged?.Invoke(current, max);

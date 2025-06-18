@@ -11,11 +11,11 @@ public class PlayerLevelUI : MonoBehaviour
     public TextMeshProUGUI levelText;
     private void Start()
     {
-        EventManager.Intance.OnEXPChanged += UpdateExp;
+        EventManager.Instance.OnEXPChanged += UpdateExp;
     }
     private void OnDisable()
     {
-        EventManager.Intance.OnEXPChanged -= UpdateExp;
+        EventManager.Instance.OnEXPChanged -= UpdateExp;
     }
     public void UpdateExp(int current, int max, int level)
     {

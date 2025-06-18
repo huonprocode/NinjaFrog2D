@@ -33,7 +33,7 @@ public class Shooting : MonoBehaviour
     {
         float direction = transform.eulerAngles.y == 0 ? 1 : -1;
 
-        GameObject bullet = BulletPool.Intacne.SpawnBullet(firePoint.position, firePoint.rotation);
+        GameObject bullet = BulletPool.Instance.SpawnBullet(firePoint.position, firePoint.rotation);
         bullet.GetComponent<Bullet>().SetDamage(playerStats.damage);
         if (bullet.TryGetComponent<Rigidbody2D>(out var rb))
         {

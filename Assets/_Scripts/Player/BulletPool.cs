@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class BulletPool : MonoBehaviour
 {
-    public static BulletPool Intacne;
+    public static BulletPool Instance;
     public GameObject bulletPref;
     public int poolSize = 20;
     public Queue<GameObject> bulletPool;
 
     void Awake()
     {
-        Intacne = this;
+        Instance = this;
 
         bulletPool = new Queue<GameObject>();
         for (int i = 0; i < poolSize; i++)
@@ -35,7 +35,7 @@ public class BulletPool : MonoBehaviour
         }
         bullet.transform.position = position;
         bullet.transform.rotation = rotation;
-        
+
         return bullet;
     }
 

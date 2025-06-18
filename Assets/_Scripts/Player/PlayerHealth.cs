@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private void Start()
     {
         playerStats.currentHealth = playerStats.maxHealth;
-        EventManager.Intance.HealthChanged(playerStats.currentHealth, playerStats.maxHealth);
+        EventManager.Instance.HealthChanged(playerStats.currentHealth, playerStats.maxHealth);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -30,7 +30,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         playerStats.currentHealth -= damageAmount;
         playerStats.currentHealth = Mathf.Max(playerStats.currentHealth, 0);
-        EventManager.Intance.HealthChanged(playerStats.currentHealth, playerStats.maxHealth);
+        EventManager.Instance.HealthChanged(playerStats.currentHealth, playerStats.maxHealth);
         if (playerStats.currentHealth <= 0)
         {
             Die();
@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        EventManager.Intance.PlayerDie();
+        EventManager.Instance.PlayerDie();
     }
 
 }

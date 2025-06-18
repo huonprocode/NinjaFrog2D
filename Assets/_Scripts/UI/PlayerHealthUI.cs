@@ -12,11 +12,11 @@ public class PlayerHealthUI : MonoBehaviour
 
     private void Start()
     {
-        EventManager.Intance.OnHealthChanged += UpdateHealthUI;
+        EventManager.Instance.OnHealthChanged += UpdateHealthUI;
     }
     private void OnDisable()
     {
-        EventManager.Intance.OnHealthChanged -= UpdateHealthUI;
+        EventManager.Instance.OnHealthChanged -= UpdateHealthUI;
     }
     private void UpdateHealthUI(int current, int max)
     {

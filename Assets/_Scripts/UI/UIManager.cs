@@ -6,19 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Intance;
+    public static UIManager Instance;
     UpgradeManager upgradeManager;
     public GameObject pausePanel;
     public GameObject gameOverPanel;
 
     private void Awake()
     {
-        if (Intance != null && Intance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        Intance = this;
+        Instance = this;
         //DontDestroyOnLoad(gameObject);
         upgradeManager = GetComponent<UpgradeManager>();
 
@@ -27,7 +27,7 @@ public class UIManager : MonoBehaviour
     }
     private void Start()
     {
-        EventManager.Intance.OnLevelUp += ShowUpgradeOption;
+        EventManager.Instance.OnLevelUp += ShowUpgradeOption;
     }
     public void ShowPauseGame()
     {

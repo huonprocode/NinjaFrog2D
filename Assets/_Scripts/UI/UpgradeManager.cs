@@ -25,7 +25,7 @@ public class UpgradeManager : MonoBehaviour
         option.Apply(playerStats);
         upgradeUI.Hide();
         Time.timeScale = 1f;
-        EventManager.Intance.HealthChanged(playerStats.currentHealth, playerStats.maxHealth);
+        EventManager.Instance.HealthChanged(playerStats.currentHealth, playerStats.maxHealth);
     }
 
     private List<UpgradeOption> PickRandomUpgrades(int count)

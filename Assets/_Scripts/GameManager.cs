@@ -6,34 +6,34 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Intance;
+    public static GameManager Instance;
 
     private void Awake()
     {
-        if (Intance != null && Intance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        Intance = this;
+        Instance = this;
         DontDestroyOnLoad(gameObject);
     }
     private void Start()
     {
-        EventManager.Intance.OnDie += GameOver;
+        EventManager.Instance.OnDie += GameOver;
     }
     private void OnDisable()
     {
-        EventManager.Intance.OnDie -= GameOver;
+        EventManager.Instance.OnDie -= GameOver;
     }
 
     public void GameOver()
     {
-        UIManager.Intance.ShowGameOver();
+        UIManager.Instance.ShowGameOver();
     }
     public void RestartGame()
     {
-        UIManager.Intance.ShowRestartGame();
+        UIManager.Instance.ShowRestartGame();
        
     }
 }
