@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
     }
     void ReturnToPool()
     {
-        ObjectPoolingManager.Instance.ReturnObjectToPool(prefabOrigin, gameObject);
+        ObjectPoolingManager.Instance.ReturnObjectToPool("Bullet", gameObject);
     }
 
 }

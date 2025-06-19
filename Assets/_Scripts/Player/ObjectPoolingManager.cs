@@ -21,13 +21,13 @@ public class ObjectPoolingManager : MonoBehaviour
         }
     }
 
-    private Dictionary<GameObject, Queue<GameObject>> poolDictionary = new Dictionary<GameObject, Queue<GameObject>>();
+    private Dictionary<string, Queue<GameObject>> poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
-    public void CreatePool(GameObject prefab, int poolSize)
+    public void CreatePool(string key, GameObject prefab, int poolSize)
     {
-        if (poolDictionary.ContainsKey(prefab))
+        if (poolDictionary.ContainsKey(key))
         {
-            Debug.LogWarning($"Pool for {prefab.name} already exists.");
+            Debug.LogWarning($"Pool for " + key + " already exists.");
             return;
         }
 
@@ -40,23 +40,26 @@ public class ObjectPoolingManager : MonoBehaviour
             objectPool.Enqueue(obj);
         }
 
-        poolDictionary.Add(prefab, objectPool);
+        poolDictionary.Add(key, objectPool);
     }
 
-    public GameObject GetObjectFromPool(GameObject prefab, Vector3 position, Quaternion rotation)
+    public GameObject GetObjectFromPool(string key, GameObject prefab, Vector3 position, Quaternion rotation)
     {
-        if (!poolDictionary.ContainsKey(prefab))
+        if (!poolDictionary.ContainsKey(key))
         {
-            Debug.LogError($"Pool for {prefab.name} doesn't exist.");
+            Debug.LogError($"Pool for " + key + " doesn't exist.");
             return null;
         }
 
-        Queue<GameObject> objectPool = poolDictionary[prefab];
+        Queue<GameObject> objectPool = poolDictionary[key];
         if (objectPool.Count == 0)
         {
+            Debug.LogWarning($"Pool for " + key + " is empty. Instantiating new object.");
             GameObject newObj = Instantiate(prefab);
-            newObj.SetActive(false);
-            objectPool.Enqueue(newObj);
+            newObj.SetActive(true);
+            newObj.transform.position = position;
+            newObj.transform.rotation = rotation;
+            return newObj;
         }
 
         GameObject obj = objectPool.Dequeue();
@@ -66,15 +69,15 @@ public class ObjectPoolingManager : MonoBehaviour
         return obj;
     }
 
-    public void ReturnObjectToPool(GameObject prefab, GameObject obj)
+    public void ReturnObjectToPool(string key, GameObject obj)
     {
-        if (!poolDictionary.ContainsKey(prefab))
+        if (!poolDictionary.ContainsKey(key))
         {
-            Debug.LogError($"Pool for {prefab.name} doesn't exist.");
+            Debug.LogError($"Pool for " + key + " doesn't exist.");
             return;
         }
 
         obj.SetActive(false);
-        poolDictionary[prefab].Enqueue(obj);
+        poolDictionary[key].Enqueue(obj);
     }
 }

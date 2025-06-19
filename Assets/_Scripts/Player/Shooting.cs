@@ -33,13 +33,9 @@ public class Shooting : MonoBehaviour
     {
         float direction = transform.eulerAngles.y == 0 ? 1 : -1;
 
-        GameObject bulletObj = ObjectPoolingManager.Instance.GetObjectFromPool(bulletPrefab, firePoint.position, firePoint.rotation);
-
-        Bullet bullet = bulletObj.GetComponent<Bullet>();
-        bullet.prefabOrigin = bulletPrefab;
-        bullet.SetDamage(playerStats.damage);
-
-        if (bullet.TryGetComponent<Rigidbody2D>(out var rb))
+        GameObject bulletObj = ObjectPoolingManager.Instance.GetObjectFromPool("Bullet", bulletPrefab, firePoint.position, firePoint.rotation);
+        bulletObj.GetComponent<Bullet>().SetDamage(playerStats.damage);
+        if (bulletObj.TryGetComponent<Rigidbody2D>(out var rb))
         {
             rb.velocity = bulletSpeed * direction * Vector2.right;
         }

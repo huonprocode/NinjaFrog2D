@@ -8,7 +8,7 @@ public class EnemyTrunk : EnemyBase, IMovable, IAttacker
 {
     float attackTimer = 2f;
     [SerializeField] private float attackCooldown = 1f;
-    public GameObject enemyBulletPrefabs;
+    public GameObject enemyBulletPrefab;
     public Transform firePoint;
     protected override void Start()
     {
@@ -26,7 +26,11 @@ public class EnemyTrunk : EnemyBase, IMovable, IAttacker
         if (attackTimer >= attackCooldown)
         {
             animator.SetTrigger("IsAttack");
-            GameObject bullet = Instantiate(enemyBulletPrefabs, firePoint.position, firePoint.rotation);
+            //GameObject bulletObj = Instantiate(enemyBulletPrefab, firePoint.position, firePoint.rotation);
+            GameObject bulletObj = ObjectPoolingManager.Instance.GetObjectFromPool("BulletEnemy",enemyBulletPrefab, firePoint.position, firePoint.rotation);
+            BulletEnemy bullet = bulletObj.GetComponent<BulletEnemy>();
+            bullet.enemyBulletPrefab = enemyBulletPrefab;
+
             if (moveDirection < 0)
             {
                 bullet.transform.localScale = new Vector3(-1, 1, 1);
@@ -35,10 +39,7 @@ public class EnemyTrunk : EnemyBase, IMovable, IAttacker
             {
                 rb.velocity = new Vector2(moveDirection, 0) * 5;
             }
-            if (bullet.TryGetComponent<BulletEnemy>(out var bulletEnemy))
-            {
-                bulletEnemy.SetDamage(enemyData.damage);
-            }
+            bullet.SetDamage(enemyData.damage);
             attackTimer = 0f;
         }
     }

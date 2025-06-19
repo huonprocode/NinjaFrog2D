@@ -6,25 +6,36 @@ using UnityEngine;
 public class BulletEnemy : MonoBehaviour
 {
     public int bulletDamage = 10;
-    public void SetDamage(int damage)
+    public float lifeTime = 4f;
+    private float currentLifeTime;
+    [HideInInspector]
+    public GameObject enemyBulletPrefab;
+    private void OnEnable()
     {
-        bulletDamage = damage;
+        currentLifeTime = lifeTime;
     }
-
+    private void Update()
+    {
+        currentLifeTime -= Time.deltaTime;
+        if (currentLifeTime <= 0)
+        {
+            Despawn();
+        }
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        //IDamageable damageable = collision.GetComponent<IDamageable>();
-
         if (collision.TryGetComponent<PlayerHealth>(out var playerHealth))
         {
             playerHealth.TakeDamage(bulletDamage);
             Despawn();
         }
-
     }
-
+    public void SetDamage(int damage)
+    {
+        bulletDamage = damage;
+    }
     void Despawn()
     {
-        Destroy(gameObject);
+        ObjectPoolingManager.Instance.ReturnObjectToPool("BulletEnemy", gameObject);
     }
 }

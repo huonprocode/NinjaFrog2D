@@ -12412,8 +12412,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89562af5618b58479552e8e6439cb84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPref: {fileID: 4833605737777781760, guid: 832931e60f7d04343964d3dc65c5e9db, type: 3}
-  poolSize: 20
+  bulletPrefab: {fileID: 4833605737777781760, guid: 832931e60f7d04343964d3dc65c5e9db, type: 3}
+  bulletEnemyPrefab: {fileID: 4064572292731081904, guid: 0631ef2a582cfb04ba9949fc3ad6546c, type: 3}
 --- !u!4 &1615183972
 Transform:
   m_ObjectHideFlags: 0
@@ -13155,7 +13155,6 @@ MonoBehaviour:
   currentHealth: 0
   moveSpeed: 5
   damage: 10
-  attackSpeed: 20
 --- !u!114 &2022895775
 MonoBehaviour:
   m_ObjectHideFlags: 0

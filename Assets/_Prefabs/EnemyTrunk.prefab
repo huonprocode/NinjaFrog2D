@@ -363,7 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 162e8b26afdd0624e9810d13ee902ba8, type: 2}
   attackCooldown: 2
-  enemyBulletPrefabs: {fileID: 4064572292731081904, guid: 0631ef2a582cfb04ba9949fc3ad6546c, type: 3}
+  enemyBulletPrefab: {fileID: 4064572292731081904, guid: 0631ef2a582cfb04ba9949fc3ad6546c, type: 3}
   firePoint: {fileID: 1201576979540667768}
 --- !u!114 &-6965683990612789705
 MonoBehaviour:
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9abc3e4ce100df4c8bd788bd55a5520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 9
+  lifeTime: 10
 --- !u!1 &6529877653928654331
 GameObject:
   m_ObjectHideFlags: 0
