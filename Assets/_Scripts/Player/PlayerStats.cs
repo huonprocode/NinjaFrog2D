@@ -8,5 +8,4 @@ public class PlayerStats : MonoBehaviour
     public int currentHealth;
     public float moveSpeed = 5f;
     public int damage = 10;
-    public float attackSpeed = 20;
 }

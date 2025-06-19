@@ -54,8 +54,9 @@ public class ObjectPoolingManager : MonoBehaviour
         Queue<GameObject> objectPool = poolDictionary[prefab];
         if (objectPool.Count == 0)
         {
-            Debug.LogWarning($"Pool for {prefab.name} is empty.");
-            return null;
+            GameObject newObj = Instantiate(prefab);
+            newObj.SetActive(false);
+            objectPool.Enqueue(newObj);
         }
 
         GameObject obj = objectPool.Dequeue();

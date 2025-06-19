@@ -13022,7 +13022,7 @@ GameObject:
   - component: {fileID: 1991623734}
   - component: {fileID: 1991623733}
   m_Layer: 0
-  m_Name: EvenManager
+  m_Name: EventManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13137,8 +13137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 49994014}
   bulletPrefab: {fileID: 4833605737777781760, guid: 832931e60f7d04343964d3dc65c5e9db, type: 3}
-  shootSpeed: 10
-  shootColdown: 0.2
+  bulletSpeed: 15
+  fireRate: 0.3
 --- !u!114 &2022895774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13155,6 +13155,7 @@ MonoBehaviour:
   currentHealth: 0
   moveSpeed: 5
   damage: 10
+  attackSpeed: 20
 --- !u!114 &2022895775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13376,7 +13377,7 @@ SceneRoots:
   - {fileID: 1615183972}
   - {fileID: 1332070963}
   - {fileID: 1991623734}
-  - {fileID: 2030410301}
   - {fileID: 1003049116}
   - {fileID: 573548910}
   - {fileID: 1058715971}
+  - {fileID: 2030410301}
