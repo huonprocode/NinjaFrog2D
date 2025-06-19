@@ -131,7 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 49994014}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 115039633}
   - component: {fileID: 115039635}
   - component: {fileID: 115039634}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2384,6 +2384,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055896232}
   m_CullTransparentMesh: 1
+--- !u!1 &1058715969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1058715971}
+  - component: {fileID: 1058715970}
+  m_Layer: 0
+  m_Name: ObjectPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1058715970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058715969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd9f0e8ba68caf43ac2210cef53e230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1058715971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058715969}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 460.86786, y: 263.07974, z: -0.1110233}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1109721686
 GameObject:
   m_ObjectHideFlags: 0
@@ -12527,7 +12571,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1722192715}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13027,7 +13071,7 @@ GameObject:
   - component: {fileID: 2022895775}
   - component: {fileID: 2022895774}
   - component: {fileID: 2022895773}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -13092,7 +13136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 49994014}
-  bulletPref: {fileID: 4833605737777781760, guid: 832931e60f7d04343964d3dc65c5e9db, type: 3}
+  bulletPrefab: {fileID: 4833605737777781760, guid: 832931e60f7d04343964d3dc65c5e9db, type: 3}
   shootSpeed: 10
   shootColdown: 0.2
 --- !u!114 &2022895774
@@ -13335,3 +13379,4 @@ SceneRoots:
   - {fileID: 2030410301}
   - {fileID: 1003049116}
   - {fileID: 573548910}
+  - {fileID: 1058715971}

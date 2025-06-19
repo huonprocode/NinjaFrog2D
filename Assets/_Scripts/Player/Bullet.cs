@@ -6,7 +6,8 @@ public class Bullet : MonoBehaviour
 {
     public int bulletDamage;
     public float lifeTime = 2f;
-    public GameObject bulletPrefab;
+    [HideInInspector]
+    public GameObject prefabOrigin;
     private Animator animator;
 
     private void OnEnable()
@@ -31,12 +32,11 @@ public class Bullet : MonoBehaviour
     }
     void Despawn()
     {
-        //ObjectPoolingManager.Instance.ReturnObjectToPool(bulletPrefab, gameObject);
-        BulletPool.Instance.DespawnBullet(gameObject);
+        ObjectPoolingManager.Instance.ReturnObjectToPool(prefabOrigin, gameObject);
+        //BulletPool.Instance.DespawnBullet(gameObject);
     }
     public void SetDamage(int damage)
     {
         bulletDamage = damage;
     }
-
 }

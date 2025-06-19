@@ -5,46 +5,42 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     public Transform firePoint;
-    public GameObject bulletPref;
+    public GameObject bulletPrefab;
     public float shootSpeed = 20;
-    public float shootColdown = 2f;
-    private float currentCooldown = 0f;
+    public float fireRate = 0.5f;
+    private float nextFireTime = 0f;
     PlayerStats playerStats;
 
 
     private void Awake()
     {
         playerStats = GetComponent<PlayerStats>();
+        ObjectPoolingManager.Instance.CreatePool(bulletPrefab, 10);
     }
     void Update()
     {
-        UpdateCooldown();
+
         HandleShooting();
     }
     void HandleShooting()
     {
-        if (Input.GetKey(KeyCode.J) && currentCooldown <= 0)
+        if (Input.GetKey(KeyCode.J) && Time.time >= nextFireTime)
         {
             Shoot();
-            currentCooldown = shootColdown;
+            nextFireTime = Time.time + fireRate;
         }
     }
     void Shoot()
     {
         float direction = transform.eulerAngles.y == 0 ? 1 : -1;
 
-        GameObject bullet = BulletPool.Instance.SpawnBullet(firePoint.position, firePoint.rotation);
-        bullet.GetComponent<Bullet>().SetDamage(playerStats.damage);
+        GameObject bulletObj = ObjectPoolingManager.Instance.GetObjectFromPool(bulletPrefab, firePoint.position, firePoint.rotation);
+        Bullet bullet = bulletObj.GetComponent<Bullet>();
+        bullet.prefabOrigin = bulletPrefab;
+        bulletObj.GetComponent<Bullet>().SetDamage(playerStats.damage);
         if (bullet.TryGetComponent<Rigidbody2D>(out var rb))
         {
-            rb.velocity = Vector2.right * shootSpeed * direction;
-        }
-    }
-    void UpdateCooldown()
-    {
-        if (currentCooldown > 0)
-        {
-            currentCooldown -= Time.deltaTime;
+            rb.velocity = Vector2.right * playerStats.attackSpeed * direction;
         }
     }
 }
