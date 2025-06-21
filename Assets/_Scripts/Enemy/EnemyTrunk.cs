@@ -26,20 +26,19 @@ public class EnemyTrunk : EnemyBase, IMovable, IAttacker
         if (attackTimer >= attackCooldown)
         {
             animator.SetTrigger("IsAttack");
-            //GameObject bulletObj = Instantiate(enemyBulletPrefab, firePoint.position, firePoint.rotation);
             GameObject bulletObj = ObjectPoolingManager.Instance.GetObjectFromPool("BulletEnemy",enemyBulletPrefab, firePoint.position, firePoint.rotation);
-            BulletEnemy bullet = bulletObj.GetComponent<BulletEnemy>();
-            bullet.enemyBulletPrefab = enemyBulletPrefab;
+            //BulletEnemy bullet = bulletObj.GetComponent<BulletEnemy>();
+            //bullet.enemyBulletPrefab = enemyBulletPrefab;
 
             if (moveDirection < 0)
             {
-                bullet.transform.localScale = new Vector3(-1, 1, 1);
+                bulletObj.transform.localScale = new Vector3(-1, 1, 1);
             }
-            if (bullet.TryGetComponent<Rigidbody2D>(out var rb))
+            if (bulletObj.TryGetComponent<Rigidbody2D>(out var rb))
             {
                 rb.velocity = new Vector2(moveDirection, 0) * 5;
             }
-            bullet.SetDamage(enemyData.damage);
+            bulletObj.GetComponent<BulletEnemy>().SetDamage(enemyData.damage);
             attackTimer = 0f;
         }
     }
